@@ -7,6 +7,9 @@ A basic rest API using PHP and Laravel
 
  ### Migration Setup for DB
     - php artisan migrate
-## Migrations New
 
+## Migrations New
   - "php artisan make:model <Model Name> --migration"
+  
+## Controllers New
+ - "php artisan make:controller <Controller Name> --api"
