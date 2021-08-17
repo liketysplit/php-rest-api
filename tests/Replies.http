@@ -1,0 +1,26 @@
+GET http://localhost:8000/api/replies/ HTTP/1.1
+content-type: application/json
+
+###
+//Check notified as the new user is not yet watching
+POST http://localhost:8000/api/replies/ HTTP/1.1
+content-type: application/json
+
+{
+    "topic_id": 1,
+    "post_body": "post body test as a reply",
+    "user_id": 4
+}
+
+###
+// check for date updated update
+PUT http://localhost:8000/api/replies/24 HTTP/1.1
+content-type: application/json
+
+{
+    "post_body": "post body test7"
+}
+
+###
+DELETE  http://localhost:8000/api/replies/24 HTTP/1.1
+content-type: application/json

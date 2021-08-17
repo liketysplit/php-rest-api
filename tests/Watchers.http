@@ -1,0 +1,18 @@
+GET http://localhost:8000/api/watchers/ HTTP/1.1
+content-type: application/json
+
+###
+//error on add
+POST http://localhost:8000/api/watcher/ HTTP/1.1
+content-type: application/json
+
+{
+    "post_id": 5,
+    "user_id": 3
+}
+
+###
+
+//error on delete
+DELETE  http://localhost:8000/api/watcher/6 HTTP/1.1
+content-type: application/json

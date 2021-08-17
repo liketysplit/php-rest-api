@@ -1,0 +1,22 @@
+GET http://localhost:8000/api/users/ HTTP/1.1
+content-type: application/json
+
+###
+//check for unqiue before store
+POST http://localhost:8000/api/users/ HTTP/1.1
+content-type: application/json
+
+{
+    "username": "username13",
+    "email": "username13@gmail.com"
+}
+
+###
+// check for unique before update
+PUT http://localhost:8000/api/users/3 HTTP/1.1
+content-type: application/json
+
+{
+    "username": "username1",
+    "email": "username@gmail.com"
+}
