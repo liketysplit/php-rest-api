@@ -18,9 +18,8 @@ class CreateRepliesTable extends Migration
             $table->string('post_body'); 
             $table->integer('user_id');
             $table->integer('topic_id');
-            $table->date('created_date');
-            $table->date('updated_date');
-            $table->timestamps();
+            $table->dateTime('created_date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('updated_date')->nullable();
             $table->foreign('topic_id')->references('id')->on('topics');
             $table->foreign('user_id')->references('id')->on('users');
         });

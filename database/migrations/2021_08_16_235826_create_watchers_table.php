@@ -17,7 +17,6 @@ class CreateWatchersTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('topic_id');
-            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('topic_id')->references('id')->on('topics');
         });

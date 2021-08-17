@@ -17,8 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username')->unique();;
             $table->string('email')->unique();;
-            $table->date('created_date');
-            $table->timestamps();
+            $table->dateTime('created_date')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
