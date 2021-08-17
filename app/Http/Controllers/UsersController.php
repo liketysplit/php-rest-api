@@ -41,6 +41,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
+        //find one user
         return Users::find($id);
     }
 
@@ -53,6 +54,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //checking for instances of username email cross sections
+        $username = Users::where('username', '=', $request->username)->first();
+        $email = Users::where('email', '=', $request->email)->first();
+
+        //Check for existing usernames and emails before allowing of edit
+        if($username !== null && $username->id !== $id) return ['error'=> 'username ' .$request->username. ' is already taken'];
+        if($email !== null && $email->id === $id) return ['error'=> 'email ' .$request->email. ' is already taken'];
+
         $user = Users::find($id);
         $user-> update($request->all());
         return $user;
@@ -66,6 +75,6 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //unused
     }
 }
