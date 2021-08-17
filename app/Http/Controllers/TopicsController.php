@@ -60,9 +60,8 @@ class TopicsController extends Controller
     public function show($id)
     {
         $topic = Topics::find($id);
-        if($topic === null) {
-            return ['error'=>'Topic requested no longer exists'];
-        }
+        if($topic === null) return '';
+        
         $topic['replies'] = Replies::where('topic_id','=', $topic->id)->get();
         return $topic;
     }
