@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Users;
+use App\Http\Controllers\UsersController;
 use App\Models\Topics;
 use App\Models\Replies;
 use App\Models\Watchers;
@@ -17,10 +17,7 @@ use App\Models\Watchers;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::get('/users', function() {
-    return Users::all();
-});
+Route::resource('users', UsersController::class);
 
 Route::get('/topics', function() {
     return Topics::all();
@@ -32,13 +29,6 @@ Route::get('/replies', function() {
 
 Route::get('/watchers', function() {
     return Watchers::all();
-});
-
-Route::post('/users', function() {
-    return Users::create([
-        'username' => 'myUsername',
-        'email' => 'myEmail@gmail.com'
-    ]);
 });
 
 Route::post('/topics', function() {
