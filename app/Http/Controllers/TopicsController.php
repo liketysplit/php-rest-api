@@ -61,7 +61,6 @@ class TopicsController extends Controller
     {
         $topic = Topics::find($id);
         if($topic === null) return '';
-        
         $topic['replies'] = Replies::where('topic_id','=', $topic->id)->get();
         return $topic;
     }

@@ -54,6 +54,18 @@ class RepliesController extends Controller
         $reply = Replies::create($request->all());
 
         $watcher = Watchers::where('topic_id', '=', $request->topic_id)->where('user_id', '=', $request->user_id)->first();
+        $topic = Topics::where('id', '=', $request->topic_id)->first();
+        $watchers = Watchers::where('topic_id', '=', $request->topic_id)->get();
+
+        
+
+        
+
+        foreach ($watchers as &$value) {
+            $user = Users::where('id', '=', $value->user_id)->first();
+            // $topic = Topics::where('topic_id', '=', $value->topic_id)->first();
+            file_put_contents('php://stderr', print_r("Notifying User: " .$user->username. " at: " .$user->email. " for change on topic id: " .$topic->id. " - " .$topic->title. "\n", TRUE));
+        }
 
         if ($watcher === null) {
 
