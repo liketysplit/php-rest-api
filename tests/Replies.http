@@ -2,7 +2,6 @@ GET http://localhost:8000/api/replies/ HTTP/1.1
 content-type: application/json
 
 ###
-//Check notified as the new user is not yet watching
 POST http://localhost:8000/api/replies/ HTTP/1.1
 content-type: application/json
 
