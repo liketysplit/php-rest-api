@@ -53,9 +53,9 @@ class WatchersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Watchers::find($id);
-        $user-> update($request->all());
-        return $user;
+        // $user = Watchers::find($id);
+        // $user-> update($request->all());
+        // return $user;
     }
 
     /**
