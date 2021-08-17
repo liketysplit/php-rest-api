@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topics;
 use App\Models\Replies;
+use App\Models\Watchers;
+use App\Models\Users;
 
 class TopicsController extends Controller
 {
@@ -26,13 +28,27 @@ class TopicsController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'title' => 'required|string',
             'post_body' => 'required|string',
             'user_id' => 'required|integer'
         ]);
 
-        return Topics::create($request->all());
+        $user = Users::where('id', '=', $request->user_id)->first();
+
+        if ($user === null) {
+            return ['error'=> 'No such user id exists.'];
+        }
+
+        $topic = Topics::create($request->all());
+
+        Watchers::create([
+            'topic_id' => $topic->id,
+            'user_id' => $topic->user_id,
+        ]);
+
+        return $topic;
     }
 
     /**
