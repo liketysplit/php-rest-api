@@ -1,9 +1,16 @@
 # php-rest-api
 A basic rest API using PHP and Laravel
 
-# Basic Setup
-    - c
-    
+# Setup
+    - create database.sqlite in the /database folder
+    - setup .env file if not using sqlite
+    - run 
+        - php artisan migrate
+        - docker build -t php-rest-api .
+        - docker run -it --rm --name php-rest-api php-rest-api
+
+     
+
 ## Commands
 
  ### Migration Setup for DB
