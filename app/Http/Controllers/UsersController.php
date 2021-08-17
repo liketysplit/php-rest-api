@@ -27,7 +27,7 @@ class UsersController extends Controller
     {
         $request->validate([
             'username' => 'required|string|unique:users,username',
-            'email' => 'required|string|unique:users,email',
+            'email' => 'required|string|unique:users,email'
         ]);
 
         return Users::create($request->all());

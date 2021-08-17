@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Topics;
 
 class TopicsController extends Controller
 {
@@ -13,7 +14,7 @@ class TopicsController extends Controller
      */
     public function index()
     {
-        //
+        return Topics::all();
     }
 
     /**
@@ -24,7 +25,13 @@ class TopicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string',
+            'post_body' => 'required|string',
+            'user_id' => 'required|integer'
+        ]);
+
+        return Topics::create($request->all());
     }
 
     /**
@@ -35,7 +42,7 @@ class TopicsController extends Controller
      */
     public function show($id)
     {
-        //
+        return Topics::find($id);
     }
 
     /**
@@ -47,7 +54,9 @@ class TopicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Topics::find($id);
+        $user-> update($request->all());
+        return $user;
     }
 
     /**
@@ -58,6 +67,6 @@ class TopicsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Topics::destroy($id); //TODO: Delete related data to topic on delete
     }
 }

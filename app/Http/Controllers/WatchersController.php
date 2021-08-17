@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Watchers;
 
 class WatchersController extends Controller
 {
@@ -13,7 +14,7 @@ class WatchersController extends Controller
      */
     public function index()
     {
-        //
+        return Watchers::all();
     }
 
     /**
@@ -24,7 +25,12 @@ class WatchersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_id' => 'required|integer',
+            'topic_id' => 'required|string'
+        ]);
+
+        return Watchers::create($request->all());
     }
 
     /**
@@ -35,7 +41,7 @@ class WatchersController extends Controller
      */
     public function show($id)
     {
-        //
+        return Watchers::find($id);
     }
 
     /**
@@ -47,7 +53,9 @@ class WatchersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Watchers::find($id);
+        $user-> update($request->all());
+        return $user;
     }
 
     /**
@@ -58,6 +66,6 @@ class WatchersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Watchers::destroy($id);
     }
 }

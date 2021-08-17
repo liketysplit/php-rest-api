@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Replies;
 
 class RepliesController extends Controller
 {
@@ -13,7 +14,7 @@ class RepliesController extends Controller
      */
     public function index()
     {
-        //
+        return Replies::all();
     }
 
     /**
@@ -24,7 +25,13 @@ class RepliesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'post_body' => 'required|string',
+            'user_id' => 'required|integer',
+            'topic_id' => 'required|integer'
+        ]);
+
+        return Replies::create($request->all());
     }
 
     /**
@@ -35,7 +42,7 @@ class RepliesController extends Controller
      */
     public function show($id)
     {
-        //
+        return Replies::find($id);
     }
 
     /**
@@ -47,7 +54,9 @@ class RepliesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Replies::find($id);
+        $user-> update($request->all());
+        return $user;
     }
 
     /**
@@ -58,6 +67,6 @@ class RepliesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Replies::destroy($id);
     }
 }
