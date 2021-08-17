@@ -1,17 +1,8 @@
-GET http://localhost:8000/api/watchers/ HTTP/1.1
+GET http://localhost/api/watchers/ HTTP/1.1
 content-type: application/json
 
 ###
-POST http://localhost:8000/api/watchers/ HTTP/1.1
-content-type: application/json
-
-{
-    "post_id": 5,
-    "user_id": 3
-}
-
-###
-PUT http://localhost:8000/api/watchers/ HTTP/1.1
+POST http://localhost/api/watchers/ HTTP/1.1
 content-type: application/json
 
 {
@@ -20,5 +11,14 @@ content-type: application/json
 }
 
 ###
-DELETE  http://localhost:8000/api/watchers/6 HTTP/1.1
+PUT http://localhost/api/watchers/ HTTP/1.1
+content-type: application/json
+
+{
+    "post_id": 5,
+    "user_id": 3
+}
+
+###
+DELETE  http://localhost/api/watchers/6 HTTP/1.1
 content-type: application/json
