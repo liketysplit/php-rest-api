@@ -86,6 +86,18 @@ class TopicsController extends Controller
      */
     public function destroy($id)
     {
-        return Topics::destroy($id); //TODO: Delete related data to topic on delete
+        $replies = Replies::where('topic_id','=', $id)->get();
+        $watchers = Watchers::where('topic_id','=', $id)->get();
+        
+
+        foreach ($replies as &$value) {
+            Replies::destroy($value->id);
+        }
+
+        foreach ($watchers as &$value) {
+            Watchers::destroy($value->id);
+        }
+
+        return Topics::destroy($id);;//TODO: Delete related data to topic on delete
     }
 }
