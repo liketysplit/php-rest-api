@@ -14,6 +14,7 @@ class WatchersController extends Controller
      */
     public function index()
     {
+        //Return List of watchers
         return Watchers::all();
     }
 
@@ -30,6 +31,12 @@ class WatchersController extends Controller
             'topic_id' => 'required|string'
         ]);
 
+        //Check for exists and return empty if already set
+        $watcher = Watchers::where('topic_id', '=', $request->topic_id)->where('user_id', '=', $request->user_id)->first();
+
+        if ($watcher != null) return '';
+        
+        //Return value if stored
         return Watchers::create($request->all());
     }
 
@@ -41,6 +48,7 @@ class WatchersController extends Controller
      */
     public function show($id)
     {
+        //find a specific watcher
         return Watchers::find($id);
     }
 
@@ -53,9 +61,7 @@ class WatchersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $user = Watchers::find($id);
-        // $user-> update($request->all());
-        // return $user;
+        //unused
     }
 
     /**
@@ -66,6 +72,7 @@ class WatchersController extends Controller
      */
     public function destroy($id)
     {
+        //delete a watch
         return Watchers::destroy($id);
     }
 }

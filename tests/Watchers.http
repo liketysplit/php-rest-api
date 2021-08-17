@@ -2,8 +2,16 @@ GET http://localhost:8000/api/watchers/ HTTP/1.1
 content-type: application/json
 
 ###
-//duplicate on add
 POST http://localhost:8000/api/watchers/ HTTP/1.1
+content-type: application/json
+
+{
+    "post_id": 5,
+    "user_id": 3
+}
+
+###
+PUT http://localhost:8000/api/watchers/ HTTP/1.1
 content-type: application/json
 
 {
