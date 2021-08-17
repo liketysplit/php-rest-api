@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Topics;
+use App\Models\Replies;
 
 class TopicsController extends Controller
 {
@@ -42,7 +43,9 @@ class TopicsController extends Controller
      */
     public function show($id)
     {
-        return Topics::find($id);
+        $topic = Topics::find($id);
+        $topic['replies'] = Replies::where('topic_id','=', $topic->id)->get();
+        return $topic;
     }
 
     /**

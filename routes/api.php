@@ -17,6 +17,8 @@ use App\Http\Controllers\WatchersController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+//Resources
 Route::resource('users', UsersController::class);
 Route::resource('topics', TopicsController::class);
 Route::resource('replies', RepliesController::class);
