@@ -17,6 +17,7 @@ class TopicsController extends Controller
      */
     public function index()
     {
+        //simple get of topics
         return Topics::all();
     }
 
@@ -35,14 +36,17 @@ class TopicsController extends Controller
             'user_id' => 'required|integer'
         ]);
 
+        //find a user to ensure they exist
         $user = Users::where('id', '=', $request->user_id)->first();
 
         if ($user === null) {
             return ['error'=> 'No such user id exists.'];
         }
 
+        //create a topic if user exists
         $topic = Topics::create($request->all());
 
+        //create a watcher for the new topic for the requested user
         Watchers::create([
             'topic_id' => $topic->id,
             'user_id' => $topic->user_id,
@@ -59,9 +63,16 @@ class TopicsController extends Controller
      */
     public function show($id)
     {
+        //find a singular topic
         $topic = Topics::find($id);
+
+        //null proctection for adding replies
         if($topic === null) return '';
+
+        //add replies to topic before retrieval
         $topic['replies'] = Replies::where('topic_id','=', $topic->id)->get();
+
+        //return topic
         return $topic;
     }
 
@@ -74,9 +85,9 @@ class TopicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Topics::find($id);
-        $user-> update($request->all());
-        return $user;
+        $topic = Topics::find($id);
+        $topic-> update($request->all());
+        return $topic;
     }
 
     /**
@@ -90,15 +101,17 @@ class TopicsController extends Controller
         $replies = Replies::where('topic_id','=', $id)->get();
         $watchers = Watchers::where('topic_id','=', $id)->get();
         
-
+        //Delete each associated reply
         foreach ($replies as &$value) {
             Replies::destroy($value->id);
         }
 
+        //Delete each associated watcher
         foreach ($watchers as &$value) {
             Watchers::destroy($value->id);
         }
 
-        return Topics::destroy($id);;//TODO: Delete related data to topic on delete
+        //Delete Topic
+        return Topics::destroy($id);
     }
 }

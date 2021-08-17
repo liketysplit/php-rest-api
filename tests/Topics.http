@@ -9,16 +9,18 @@ content-type: application/json
 {
     "title": "username1",
     "post_body": "post body test",
-    "user_id": 3
+    "user_id": 1,
+    
 }
 
 ###
 // check for date updated update
-PUT http://localhost:8000/api/topics/6 HTTP/1.1
+PUT http://localhost:8000/api/topics/1 HTTP/1.1
 content-type: application/json
 
 {
-    "post_body": "post body test3"
+    "post_body": "post body test6",
+    
 }
 
 ###
