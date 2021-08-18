@@ -16,10 +16,10 @@ class CreateRepliesTable extends Migration
         Schema::create('replies', function (Blueprint $table) {
             $table->id();
             $table->string('post_body'); 
-            $table->integer('user_id');
-            $table->integer('topic_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('topic_id');
             $table->dateTime('created_date')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('updated_date')->nullable();
+            $table->timestamp('updated_date')->useCurrent()->useCurrentOnUpdate()->nullable();
             $table->foreign('topic_id')->references('id')->on('topics');
             $table->foreign('user_id')->references('id')->on('users');
         });

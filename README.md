@@ -2,7 +2,11 @@
 A basic rest API using PHP and Laravel
 
 # Setup
-    - sqlite 
+   - compose (default) 
+        - composer install
+        - ./vendor/bin/sail up
+        - ./vendor/bin/sail artisan migrate || php artisan migrate
+    - sqlite (does not support date modified on update)
         - docker build -t php-rest-api .
         - docker run -it -d --rm -p 80:8000 --name php-rest-api php-rest-api
 
