@@ -2,15 +2,16 @@
 A basic rest API using PHP and Laravel
 
 # Setup
-   - compose (default) 
+   ## compose (default) 
         - composer install
         - ./vendor/bin/sail up
         - ./vendor/bin/sail artisan migrate || php artisan migrate
-    - sqlite (does not support date modified on update)
+        - ./vendor/bin/sail artisan migrate:rollback (only if wanting to dump the tables)
+   ## sqlite (does not support date modified on update)
         - docker build -t php-rest-api .
         - docker run -it -d --rm -p 80:8000 --name php-rest-api php-rest-api
 
-## Commands
+# Commands
 
  ### Migration Setup for DB
     - php artisan migrate
@@ -22,7 +23,8 @@ A basic rest API using PHP and Laravel
  ### Controllers New
     - "php artisan make:controller <Controller Name> --api"
 
- ### Testing
+# Testing
+   Done within Rest Client in VScode or used within Postman. Generic requests where stored in *.http files for ease of use.
    - Users.http
    - Topics.http
    - Replies.http
