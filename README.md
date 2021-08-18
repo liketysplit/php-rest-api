@@ -21,3 +21,9 @@ A basic rest API using PHP and Laravel
 
  ### Controllers New
     - "php artisan make:controller <Controller Name> --api"
+
+ ### Testing
+   - Users.http
+   - Topics.http
+   - Replies.http
+   - Watchers.http
